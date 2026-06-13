@@ -15,6 +15,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -195,7 +197,7 @@ class ChatRepository(context: Context) {
                     isOutgoing = entity.senderAlias == alias,
                     statusTick = entity.statusTick,
                     mediaLocalPath = entity.mediaLocalPath,
-                    mediaUrl = entity.mediaUrl ?: entity.mediaLocalPath // Use mediaUrl if available, fallback to path
+                    mediaUrl = entity.mediaUrl
                 )
             }
             _messagesFlow.emit(messages)

@@ -11,7 +11,8 @@ import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.websocket.*
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
-import java.time.Duration
+import kotlin.time.Duration.Companion.seconds
+import io.ktor.server.application.install
 
 fun main() {
     val port = System.getenv("PORT")?.toIntOrNull() ?: 8080
@@ -38,8 +39,8 @@ fun Application.module() {
 
     // Install WebSockets
     install(WebSockets) {
-        pingPeriod = Duration.ofSeconds(20)
-        timeout = Duration.ofSeconds(60)
+        pingPeriod = 20.seconds
+        timeout = 60.seconds
         maxFrameSize = Long.MAX_VALUE
         masking = false
     }

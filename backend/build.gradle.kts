@@ -2,8 +2,8 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "2.0.0"
-    kotlin("plugin.serialization") version "2.0.0"
+    kotlin("jvm")
+    kotlin("plugin.serialization")
     id("com.github.johnrengelman.shadow") version "8.1.1"
     application
 }
@@ -11,18 +11,21 @@ plugins {
 group = "com.opencalc"
 version = "1.0.0"
 
-repositories {
-    mavenCentral()
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
+
+
 
 dependencies {
     // Ktor Server Core
-    implementation("io.ktor:ktor-server-core:2.3.12")
-    implementation("io.ktor:ktor-server-netty:2.3.12")
-    implementation("io.ktor:ktor-server-websockets:2.3.12")
-    implementation("io.ktor:ktor-server-content-negotiation:2.3.12")
-    implementation("io.ktor:ktor-server-cors:2.3.12")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12")
+    implementation("io.ktor:ktor-server-core:3.0.0")
+    implementation("io.ktor:ktor-server-netty:3.0.0")
+    implementation("io.ktor:ktor-server-websockets:3.0.0")
+    implementation("io.ktor:ktor-server-content-negotiation:3.0.0")
+    implementation("io.ktor:ktor-server-cors:3.0.0")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0")
 
     // Security & Hashing (Fixes the mindrot/BCrypt errors)
     implementation("org.mindrot:jbcrypt:0.4")
@@ -33,7 +36,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-jdbc:0.52.0")
     implementation("org.jetbrains.exposed:exposed-java-time:0.52.0")
     implementation("org.postgresql:postgresql:42.7.3")
-    implementation("org.xerial:sqlite-jdbc:3.46.0.0")
+    implementation("org.xerial:sqlite-jdbc:3.47.0.0")
     implementation("com.zaxxer:HikariCP:5.1.0")
 
 
@@ -45,13 +48,13 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.5.6")
 
     // Testing
-    testImplementation("io.ktor:ktor-server-test-host:2.3.12")
+    testImplementation("io.ktor:ktor-server-test-host:3.0.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test:2.0.0")
 }
 
-tasks.withType<KotlinCompile> {
+tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "21"
     }
 }
 
@@ -65,4 +68,8 @@ tasks.withType<ShadowJar> {
 
 application {
     mainClass.set("com.opencalc.backend.ApplicationKt")
+}
+
+tasks.withType<JavaCompile> {
+    enabled = false
 }

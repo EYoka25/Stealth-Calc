@@ -44,6 +44,7 @@ class ChatFragment : Fragment() {
     private val stickerFolderLauncher = registerForActivityResult(
         ActivityResultContracts.OpenDocumentTree()
     ) { treeUri ->
+        (activity as? HiddenChatActivity)?.setPanicActive(false)
         treeUri?.let { uri ->
             val stickers = stickerSyncEngine.parseStickersFromTree(uri, requireActivity().contentResolver)
             if (stickers.isNotEmpty()) {
@@ -58,6 +59,7 @@ class ChatFragment : Fragment() {
     private val filePickerLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri ->
+        (activity as? HiddenChatActivity)?.setPanicActive(false)
         uri?.let { importWhatsAppChat(it) }
     }
 
@@ -132,10 +134,12 @@ class ChatFragment : Fragment() {
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_import_chat -> {
+                    (activity as? HiddenChatActivity)?.setPanicActive(true)
                     filePickerLauncher.launch("text/plain")
                     true
                 }
                 R.id.action_sync_stickers -> {
+                    (activity as? HiddenChatActivity)?.setPanicActive(true)
                     stickerSyncEngine.launchFolderPicker(stickerFolderLauncher)
                     true
                 }
@@ -180,14 +184,17 @@ class ChatFragment : Fragment() {
 
     private fun observeMessages() {
         lifecycleScope.launch {
-            chatRepository.newMessageFlow.collectLatest { message ->
+            chatRepository.newMessageFlow.collect { message ->
                 val currentList = messageAdapter.currentList.toMutableList()
-                currentList.add(message)
-                messageAdapter.submitList(currentList) {
-                    binding.chatRecyclerView.scrollToPosition(currentList.size - 1)
+                // Avoid duplicates if already in list (e.g. from loadMessages)
+                if (currentList.none { it.messageId == message.messageId }) {
+                    currentList.add(message)
+                    messageAdapter.submitList(currentList) {
+                        binding.chatRecyclerView.scrollToPosition(currentList.size - 1)
+                    }
+                    // Save scroll position
+                    (activity as? HiddenChatActivity)?.updateScrollIndex(currentList.size - 1)
                 }
-                // Save scroll position
-                (requireActivity() as? HiddenChatActivity)?.updateScrollIndex(currentList.size - 1)
             }
         }
     }
@@ -273,6 +280,9 @@ class ChatFragment : Fragment() {
                 val newAlias = editText.text.toString().trim()
                 if (newAlias.isNotEmpty()) {
                     sessionManager.saveSession(roomId, sessionManager.getAuthToken() ?: "", newAlias)
+                    // Also update the encrypted prefs directly to be sure
+                    val stealthPrefs = StealthPreferences(requireContext())
+                    stealthPrefs.setSenderAlias(newAlias)
                     Toast.makeText(requireContext(), R.string.stealth_alias_updated, Toast.LENGTH_SHORT).show()
                 }
             }

@@ -86,6 +86,10 @@ class HiddenChatActivity : AppCompatActivity() {
     fun updateScrollIndex(index: Int) {
         currentScrollIndex = index
     }
+    
+    fun setPanicActive(active: Boolean) {
+        stealthObserver.setPanicActive(active)
+    }
 
     fun logout() {
         sessionManager.clearSession()

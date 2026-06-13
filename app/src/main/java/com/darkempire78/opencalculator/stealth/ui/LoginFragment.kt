@@ -14,6 +14,7 @@ import com.darkempire78.opencalculator.databinding.FragmentLoginBinding
 import com.darkempire78.opencalculator.stealth.SessionManager
 import com.darkempire78.opencalculator.stealth.network.ChatRepository
 import com.darkempire78.opencalculator.stealth.StealthPreferences
+import com.darkempire78.opencalculator.stealth.ui.HiddenChatActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -39,8 +40,8 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val activity = requireActivity() as HiddenChatActivity
-        chatRepository = activity.chatRepository
+        val hiddenActivity = requireActivity() as HiddenChatActivity
+        chatRepository = hiddenActivity.chatRepository
         sessionManager = SessionManager(requireContext())
         stealthPrefs = StealthPreferences(requireContext())
 
