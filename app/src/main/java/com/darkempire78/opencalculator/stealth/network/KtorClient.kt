@@ -89,12 +89,16 @@ class KtorClient(private val baseUrl: String) {
             val url = java.net.URL(baseUrl)
             val host = url.host ?: "localhost"
             val port = if (url.port > 0) url.port else (if (url.protocol == "https") 443 else 80)
+            val isSecure = url.protocol == "https"
             
             wsSession = client.webSocketSession(
                 host = host,
                 port = port,
                 path = "/chat/$roomId"
             ) {
+                url {
+                    protocol = if (isSecure) io.ktor.http.URLProtocol.WSS else io.ktor.http.URLProtocol.WS
+                }
                 header("Authorization", "Bearer $token")
             }
 
