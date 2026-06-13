@@ -65,7 +65,7 @@ class StealthPreferences(context: Context) {
         prefs.edit { putString(KEY_SERVER_URL, url) }
     }
 
-    fun getServerUrl(): String = prefs.getString(KEY_SERVER_URL, "http://10.0.2.2:8080") ?: "http://10.0.2.2:8080"
+    fun getServerUrl(): String = prefs.getString(KEY_SERVER_URL, "https://stealth-calc-backend.onrender.com") ?: "https://stealth-calc-backend.onrender.com"
 
     fun setAuthToken(token: String) {
         prefs.edit { putString(KEY_AUTH_TOKEN, token) }
