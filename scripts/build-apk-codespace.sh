@@ -45,7 +45,7 @@ install_android_cmdline_tools() {
   local sdk_dir="$ANDROID_SDK_INSTALL_DIR"
   local tmp_dir
   tmp_dir="$(mktemp -d)"
-  trap 'rm -rf "$tmp_dir"' RETURN
+  trap 'rm -rf "${tmp_dir:-}"' RETURN
 
   echo "Android SDK was not found. Installing command line tools into: $sdk_dir"
   mkdir -p "$sdk_dir/cmdline-tools"
@@ -62,6 +62,8 @@ install_android_cmdline_tools() {
   unzip -q "$tmp_dir/cmdline-tools.zip" -d "$tmp_dir"
   rm -rf "$sdk_dir/cmdline-tools/latest"
   mv "$tmp_dir/cmdline-tools" "$sdk_dir/cmdline-tools/latest"
+  rm -rf "$tmp_dir"
+  trap - RETURN
 }
 
 ensure_android_sdk() {
