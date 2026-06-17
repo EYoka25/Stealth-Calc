@@ -24,6 +24,7 @@
     <color name="button_clear_color">#FF00A11C</color>
     <color name="button_equals_color">#FFB3004D</color>
     <color name="button_ripple_color">#FFBDBDBD</color>
+    <color name="calculation_error_color">#FFD32F2F</color>
     <color name="switch_primary_color">#FF0070BC</color>
     <color name="switch_on_primary_color">#FFFFFFFF</color>
     <color name="switch_surface_variant_color">#FFE0E0E0</color>

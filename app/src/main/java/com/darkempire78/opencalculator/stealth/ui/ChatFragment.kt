@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.darkempire78.opencalculator.R
 import com.darkempire78.opencalculator.databinding.FragmentChatBinding
 import com.darkempire78.opencalculator.stealth.SessionManager
+import com.darkempire78.opencalculator.stealth.StealthPreferences
 import com.darkempire78.opencalculator.stealth.importer.StickerSyncEngine
 import com.darkempire78.opencalculator.stealth.importer.WhatsAppTxtImporter
 import com.darkempire78.opencalculator.stealth.model.ChatMessage
