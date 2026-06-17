@@ -7,15 +7,72 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Default light calculator theme -->
+    <color name="app_icon_background_color">#0070BC</color>
+    <color name="foreground_color">#FFFFFFFF</color>
+    <color name="background_color">#FFF5F5F5</color>
+    <color name="popup_background_color">#FFFFFFFF</color>
+    <color name="history_background_color">#FFE9E9E9</color>
+    <color name="text_color">#FF202124</color>
+    <color name="text_second_color">#FF555555</color>
+    <color name="text_third_color">#FF777777</color>
+    <color name="text_category_color">#FF0070BC</color>
+    <color name="button_color">#FFEFEFEF</color>
+    <color name="button_symbol_color">#FF0070BC</color>
+    <color name="button_clear_color">#FF00A11C</color>
+    <color name="button_equals_color">#FFB3004D</color>
+    <color name="button_ripple_color">#FFBDBDBD</color>
+    <color name="switch_primary_color">#FF0070BC</color>
+    <color name="switch_on_primary_color">#FFFFFFFF</color>
+    <color name="switch_surface_variant_color">#FFE0E0E0</color>
+
+    <!-- Amoled theme -->
+    <color name="amoled_foreground_color">#FF000000</color>
+    <color name="amoled_background_color">#FF000000</color>
+    <color name="amoled_popup_background_color">#FF101010</color>
+    <color name="amoled_history_background_color">#FF0A0A0A</color>
+    <color name="amoled_text_color">#FFFFFFFF</color>
+    <color name="amoled_text_second_color">#FFCCCCCC</color>
+    <color name="amoled_text_third_color">#FF9E9E9E</color>
+    <color name="amoled_text_category_color">#FF9E9E9E</color>
+    <color name="amoled_button_color">#FF111111</color>
+    <color name="amoled_button_symbol_color">#FF2196F3</color>
+    <color name="amoled_button_clear_color">#FF00BA20</color>
+    <color name="amoled_button_equals_color">#FFB3004D</color>
+    <color name="amoled_button_ripple_color">#FF424242</color>
+    <color name="amoled_separator_color">#FF111111</color>
+    <color name="amoled_switch_primary_color">#FF2196F3</color>
+    <color name="amoled_switch_on_primary_color">#FF000000</color>
+
+    <!-- Static fallbacks used by Material You themes on devices without dynamic color resources. -->
+    <color name="material_dynamic_neutral20">#FF303030</color>
+    <color name="material_dynamic_neutral95">#FFF1F1F1</color>
+    <color name="material_dynamic_primary30">#FF004B7C</color>
+    <color name="material_dynamic_primary40">#FF00639F</color>
+    <color name="material_dynamic_primary60">#FF1E96D4</color>
+    <color name="material_dynamic_primary70">#FF55B0EC</color>
+    <color name="material_dynamic_primary80">#FF8DCCFF</color>
+    <color name="material_dynamic_primary90">#FFCBE6FF</color>
+    <color name="material_dynamic_secondary10">#FF0D1D29</color>
+    <color name="material_dynamic_secondary20">#FF22323F</color>
+    <color name="material_dynamic_secondary30">#FF384956</color>
+    <color name="material_dynamic_secondary90">#FFD5E4F2</color>
+    <color name="material_dynamic_secondary95">#FFEAF2FA</color>
+    <color name="material_dynamic_tertiary30">#FF52304D</color>
+    <color name="material_dynamic_tertiary90">#FFFFD7F3</color>
+
     <!-- ==================== STEALTH CHAT UI ==================== -->
-    <!-- These were previously duplicated in stealth_colors.xml -->
     <color name="chat_background">#FF121212</color>
+    <color name="message_sent_background">#FF005C4B</color>
+    <color name="message_received_background">#FF1F2C34</color>
     <color name="message_sent_text">#FFFFFFFF</color>
     <color name="message_received_text">#FFE0E0E0</color>
     <color name="message_meta_text">#FF9E9E9E</color>
     <color name="sender_name_color">#FF81D4FA</color>
     <color name="status_connecting">#FFFFB74D</color>
     <color name="status_background">#FF1E1E1E</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="tick_blue">#FF34B7F1</color>
+    <color name="tick_grey">#FF9E9E9E</color>
 </resources>
